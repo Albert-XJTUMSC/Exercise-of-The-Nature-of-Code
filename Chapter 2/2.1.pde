@@ -1,3 +1,5 @@
+//模拟一个氦气球向上漂浮并在窗口顶部反弹的效果，并添加一个随时间变化的风力，用Perlin噪声产生这个风力
+
 Mover mover = new Mover();
 void setup() {
   size(800, 800);
@@ -10,8 +12,9 @@ void draw() {
   PVector gravity = new PVector(0, 9.8);
   PVector floation = new PVector(0, -9.81);
   if(mousePressed) {
-    PVector wind = new PVector(0.05, 0);
+    PVector wind = new PVector(noise(frameCount), 0);
     mover.applyForce(wind);
+    print(wind);
   }
   mover.applyForce(gravity);
   mover.applyForce(floation);
